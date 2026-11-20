@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مفتاح القدرات</title>
+<meta name="apple-mobile-web-app-title" content="مفتاح القدرات">
+<meta name="application-name" content="مفتاح القدرات">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0F4C5C">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<style>
+html,body{margin:0;height:100%;background:#F2F6F5;overflow:hidden}
+iframe{position:fixed;inset:0;width:100%;height:100%;height:100dvh;border:0;
+ padding-top:env(safe-area-inset-top);box-sizing:border-box;background:#F2F6F5}
+</style>
+</head>
+<body>
+<iframe src="https://script.google.com/macros/s/AKfycbxpqqSWrhT8ScDUpVvGnxX0jla_RjAcYg_N5xnBxaIJvHICcpBG3NKgj2ft2rRFN1-Ykg/exec"
+ title="مفتاح القدرات" allow="clipboard-write" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<script>
+(function(){
+  var K = "meftah-qd-wrap-v1";
+  function get(){ try { return JSON.parse(localStorage.getItem(K)) || {}; } catch(e){ return {}; } }
+  function put(o){ try { localStorage.setItem(K, JSON.stringify(o)); } catch(e){} }
+  addEventListener("message", function(e){
+    if (!/^https:\/\/[a-z0-9-]+-script\.googleusercontent\.com$/.test(e.origin)) return;
+    var d = e.data; if (!d || d.meftah !== 1) return;
+    var s = get();
+    if (d.t === "get") e.source.postMessage({ meftah: 1, t: "state", code: s.code || null, dev: s.dev || null }, e.origin);
+    else if (d.t === "save"){ if (/^[A-Z][0-9]{4}$/.test(d.code || "")) s.code = d.code; if (/^[0-9a-f]{24}$/.test(d.dev || "")) s.dev = d.dev; put(s); }
+    else if (d.t === "clear"){ delete s.code; put(s); }
+  });
+})();
+</script>
+</body>
+</html>
